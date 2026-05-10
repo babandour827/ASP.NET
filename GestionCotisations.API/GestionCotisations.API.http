@@ -1,0 +1,6 @@
+@GestionCotisations.API_HostAddress = http://localhost:5125
+
+GET {{GestionCotisations.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
