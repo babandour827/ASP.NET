@@ -1,0 +1,300 @@
+Utilisation des paramètres de lancement à partir de C:\Users\hp\Desktop\Projets\ASP.NET\GestionCotisations.API\Properties\launchSettings.json...
+Génération...
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No store type was specified for the decimal property 'MontantDu' on entity type 'Cotisation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No store type was specified for the decimal property 'MontantPaye' on entity type 'Cotisation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No store type was specified for the decimal property 'Montant' on entity type 'Paiement'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No store type was specified for the decimal property 'Montant' on entity type 'TypeCotisation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (316ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3,163ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      
+      IF EXISTS
+          (SELECT *
+           FROM [sys].[objects] o
+           WHERE [o].[type] = 'U'
+           AND [o].[is_ms_shipped] = 0
+           AND [o].[object_id] NOT IN (SELECT [ep].[major_id]
+              FROM [sys].[extended_properties] AS [ep]
+              WHERE [ep].[minor_id] = 0
+                  AND [ep].[class] = 1
+                  AND [ep].[name] = N'microsoft_database_tools_support'
+          )
+      )
+      SELECT 1 ELSE SELECT 0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (288ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (70ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Utilisateurs] AS [u]) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5125
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Users\hp\Desktop\Projets\ASP.NET\GestionCotisations.API
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (686ms) [Parameters=[@request_Email='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [u].[Id], [u].[Actif], [u].[DateCreation], [u].[DerniereConnexion], [u].[Email], [u].[Nom], [u].[PasswordHash], [u].[Prenom], [u].[RoleId], [u].[TokenReset], [u].[TokenResetExpiry], [r].[Id], [r].[DateCreation], [r].[Description], [r].[Libelle]
+      FROM [Utilisateurs] AS [u]
+      INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+      WHERE [u].[Email] = @request_Email AND [u].[Actif] = CAST(1 AS bit)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (106ms) [Parameters=[@request_Email='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [u].[Id], [u].[Actif], [u].[DateCreation], [u].[DerniereConnexion], [u].[Email], [u].[Nom], [u].[PasswordHash], [u].[Prenom], [u].[RoleId], [u].[TokenReset], [u].[TokenResetExpiry], [r].[Id], [r].[DateCreation], [r].[Description], [r].[Libelle]
+      FROM [Utilisateurs] AS [u]
+      INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+      WHERE [u].[Email] = @request_Email AND [u].[Actif] = CAST(1 AS bit)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (336ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      UPDATE [Utilisateurs] SET [DerniereConnexion] = @p0
+      OUTPUT 1
+      WHERE [Id] = @p1;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (335ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Membres] AS [m]
+      WHERE [m].[Statut] = N'Actif'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (26ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (114ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COALESCE(SUM([c].[MontantPaye]), 0.0)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COALESCE(SUM([c].[MontantDu]), 0.0)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (28ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Statut] = N'EnRetard'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Statut] = N'EnAttente'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Membres] AS [m]
+      WHERE [m].[Statut] = N'Actif'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COALESCE(SUM([c].[MontantPaye]), 0.0)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COALESCE(SUM([c].[MontantDu]), 0.0)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Statut] = N'EnRetard'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Statut] = N'EnAttente'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Membres] AS [m]
+      WHERE [m].[Statut] = N'Actif'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COALESCE(SUM([c].[MontantPaye]), 0.0)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COALESCE(SUM([c].[MontantDu]), 0.0)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Statut] = N'EnRetard'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Statut] = N'EnAttente'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Membres] AS [m]
+      WHERE [m].[Statut] = N'Actif'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COALESCE(SUM([c].[MontantPaye]), 0.0)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@annee='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT COALESCE(SUM([c].[MontantDu]), 0.0)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Exercice] = @annee
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Statut] = N'EnRetard'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Cotisations] AS [c]
+      WHERE [c].[Statut] = N'EnAttente'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (107ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [m].[Id], [m].[Nom], [m].[Prenom], [m].[Email], [m].[Telephone], [m].[Ville], [m].[Statut], [m].[DateAdhesion]
+      FROM [Membres] AS [m]
+      ORDER BY [m].[Nom]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (21ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [m].[Id], [m].[Nom], [m].[Prenom], [m].[Email], [m].[Telephone], [m].[Ville], [m].[Statut], [m].[DateAdhesion]
+      FROM [Membres] AS [m]
+      ORDER BY [m].[Nom]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [m].[Id], [m].[Nom], [m].[Prenom], [m].[Email], [m].[Telephone], [m].[Ville], [m].[Statut], [m].[DateAdhesion]
+      FROM [Membres] AS [m]
+      ORDER BY [m].[Nom]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [m].[Id], [m].[Nom], [m].[Prenom], [m].[Email], [m].[Telephone], [m].[Ville], [m].[Statut], [m].[DateAdhesion]
+      FROM [Membres] AS [m]
+      ORDER BY [m].[Nom]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (604ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Libelle], [t].[Montant], [t].[Periodicite], [t].[Description]
+      FROM [TypeCotisations] AS [t]
+      WHERE [t].[Actif] = CAST(1 AS bit)
+      ORDER BY [t].[Libelle]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Libelle], [t].[Montant], [t].[Periodicite], [t].[Description]
+      FROM [TypeCotisations] AS [t]
+      WHERE [t].[Actif] = CAST(1 AS bit)
+      ORDER BY [t].[Libelle]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (598ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[Id], [c].[Exercice], [c].[MontantDu], [c].[MontantPaye], [c].[MontantDu] - [c].[MontantPaye] AS [Solde], [c].[DateEcheance], [c].[Statut], [m].[Nom] + N' ' + [m].[Prenom] AS [Membre], [t].[Libelle] AS [TypeCotisation]
+      FROM [Cotisations] AS [c]
+      INNER JOIN [Membres] AS [m] ON [c].[MembreId] = [m].[Id]
+      INNER JOIN [TypeCotisations] AS [t] ON [c].[TypeCotisationId] = [t].[Id]
+      ORDER BY [c].[DateCreation] DESC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[Id], [c].[Exercice], [c].[MontantDu], [c].[MontantPaye], [c].[MontantDu] - [c].[MontantPaye] AS [Solde], [c].[DateEcheance], [c].[Statut], [m].[Nom] + N' ' + [m].[Prenom] AS [Membre], [t].[Libelle] AS [TypeCotisation]
+      FROM [Cotisations] AS [c]
+      INNER JOIN [Membres] AS [m] ON [c].[MembreId] = [m].[Id]
+      INNER JOIN [TypeCotisations] AS [t] ON [c].[TypeCotisationId] = [t].[Id]
+      ORDER BY [c].[DateCreation] DESC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[Id], [c].[Exercice], [c].[MontantDu], [c].[MontantPaye], [c].[MontantDu] - [c].[MontantPaye] AS [Solde], [c].[DateEcheance], [c].[Statut], [m].[Nom] + N' ' + [m].[Prenom] AS [Membre], [t].[Libelle] AS [TypeCotisation]
+      FROM [Cotisations] AS [c]
+      INNER JOIN [Membres] AS [m] ON [c].[MembreId] = [m].[Id]
+      INNER JOIN [TypeCotisations] AS [t] ON [c].[TypeCotisationId] = [t].[Id]
+      ORDER BY [c].[DateCreation] DESC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[Id], [c].[Exercice], [c].[MontantDu], [c].[MontantPaye], [c].[MontantDu] - [c].[MontantPaye] AS [Solde], [c].[DateEcheance], [c].[Statut], [m].[Nom] + N' ' + [m].[Prenom] AS [Membre], [t].[Libelle] AS [TypeCotisation]
+      FROM [Cotisations] AS [c]
+      INNER JOIN [Membres] AS [m] ON [c].[MembreId] = [m].[Id]
+      INNER JOIN [TypeCotisations] AS [t] ON [c].[TypeCotisationId] = [t].[Id]
+      ORDER BY [c].[DateCreation] DESC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (307ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[Montant], [p].[DatePaiement], [p].[ModePaiement], [p].[Reference], [m].[Nom] + N' ' + [m].[Prenom] AS [Membre]
+      FROM [Paiements] AS [p]
+      INNER JOIN [Cotisations] AS [c] ON [p].[CotisationId] = [c].[Id]
+      INNER JOIN [Membres] AS [m] ON [c].[MembreId] = [m].[Id]
+      ORDER BY [p].[DatePaiement] DESC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[Montant], [p].[DatePaiement], [p].[ModePaiement], [p].[Reference], [m].[Nom] + N' ' + [m].[Prenom] AS [Membre]
+      FROM [Paiements] AS [p]
+      INNER JOIN [Cotisations] AS [c] ON [p].[CotisationId] = [c].[Id]
+      INNER JOIN [Membres] AS [m] ON [c].[MembreId] = [m].[Id]
+      ORDER BY [p].[DatePaiement] DESC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (713ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [n].[Id], [n].[Type], [n].[Sujet], [n].[Message], [n].[Statut], [n].[Email], [n].[DateEnvoi], [n].[DateCreation], [m].[Nom] + N' ' + [m].[Prenom] AS [Membre]
+      FROM [Notifications] AS [n]
+      INNER JOIN [Membres] AS [m] ON [n].[MembreId] = [m].[Id]
+      ORDER BY [n].[DateCreation] DESC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (21ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [n].[Id], [n].[Type], [n].[Sujet], [n].[Message], [n].[Statut], [n].[Email], [n].[DateEnvoi], [n].[DateCreation], [m].[Nom] + N' ' + [m].[Prenom] AS [Membre]
+      FROM [Notifications] AS [n]
+      INNER JOIN [Membres] AS [m] ON [n].[MembreId] = [m].[Id]
+      ORDER BY [n].[DateCreation] DESC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[Nom], [u].[Prenom], [u].[Email], [u].[Actif], [u].[DateCreation], [u].[DerniereConnexion], [r].[Libelle] AS [Role], [u].[RoleId]
+      FROM [Utilisateurs] AS [u]
+      INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+      ORDER BY [u].[Nom]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[Nom], [u].[Prenom], [u].[Email], [u].[Actif], [u].[DateCreation], [u].[DerniereConnexion], [r].[Libelle] AS [Role], [u].[RoleId]
+      FROM [Utilisateurs] AS [u]
+      INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+      ORDER BY [u].[Nom]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (53ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [r].[Id], [r].[Libelle]
+      FROM [Roles] AS [r]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [r].[Id], [r].[Libelle]
+      FROM [Roles] AS [r]
